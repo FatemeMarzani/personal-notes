@@ -6,5 +6,5 @@ To become an expert in this exciting field, I need to learn many things. I will 
 Most of the notes are related to becoming a good data analyst, and some are more general.
 
 What I'm learning?
-- [ ] Git
+- [x] [Git](Git/Git.ipynb)
 - [ ] Introduction to Relational Databases
