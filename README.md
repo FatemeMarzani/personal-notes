@@ -9,3 +9,6 @@ What I'm learning?
 - [x] [Git](Git/Git.ipynb)
 - [ ] Introduction to Relational Databases
 - [ ] Apache Spark (TM) SQL for Data Analysts
+- [ ] Microsoft Power BI: Data Visualization
+- [ ] Tableau
+- [ ] Hadoop
