@@ -7,7 +7,7 @@ Most of the notes are related to becoming a good data analyst, and some are more
 
 What I'm learning?
 - [x] [Git](Git/Git.ipynb)
-- [ ] Introduction to Relational Databases
+- [ ] [Introduction to Relational Databases](RDBMS)
 - [ ] Apache Spark (TM) SQL for Data Analysts
 - [ ] Microsoft Power BI: Data Visualization
 - [ ] Tableau
