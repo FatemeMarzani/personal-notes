@@ -40,6 +40,16 @@ class View {
        });
        productDOM.innerHTML=result
     }
+    getCartButtons(){
+        const buttons=[...document.querySelectorAll('.bag-btn')]
+        buttons.forEach((item)=>{
+            let id=item.dataset.id
+            item.addEventListener('click',(event)=>{
+               console.log(event)
+            })
+
+        })
+    }
 }
 
 class Storage {
@@ -56,6 +66,9 @@ document.addEventListener('DOMContentLoaded',() => {
         view.displayProducts(data)
         Storage.saveProducts(data)
 
+    })
+    .then(()=>{
+        view.getCartButtons()
     })
     
 })
