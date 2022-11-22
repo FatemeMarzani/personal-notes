@@ -1,8 +1,11 @@
 const productDOM=document.querySelector('.products-center')
+const cartItems=document.querySelector('.cart-items')
+const cartTotal=document.querySelector('.cart-total')
+
 let cart=[]
 
 class Product {
-    async getProduct(){
+    async getProducts(){
         try {
             const result=await fetch('products.json')
             const data=await result.json()
@@ -48,9 +51,22 @@ class View {
                 let cartItem={...Storage.getProduct(id), amount: 1}
                 cart=[...cart,cartItem]
                 Storage.saveCart(cart)
+                this.setCartValues(cart)
             })
 
         })
+    }
+    setCartValues(cart){
+        let totalPrice=0
+        let totalItem=0
+        cart.map((item)=>{
+            totalPrice=totalPrice+((item.price)*(item.amount))
+            totalItem=totalItem+item.amount
+        })
+        cartTotal.innerHTML=totalPrice
+        cartItems.innerHTML=totalItem
+        console.log(totalPrice)
+        console.log(totalItem)
     }
 }
 
@@ -60,7 +76,7 @@ class Storage {
     }
     static getProduct(id){
         let products=JSON.parse(localStorage.getItem('products'))
-        return products.find(item=>item.id===id)
+         return products.find((item)=> item.id===id)
     }
     static saveCart(cart){
         localStorage.setItem('cart',JSON.stringify(cart))
@@ -71,7 +87,7 @@ class Storage {
 document.addEventListener('DOMContentLoaded',() => {
     const view=new View()
     const product= new Product()
-    product.getProduct().then((data)=>{
+    product.getProducts().then((data)=>{
         view.displayProducts(data)
         Storage.saveProducts(data)
 
