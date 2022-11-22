@@ -1,3 +1,4 @@
+const productDOM=document.querySelector('.products-center')
 let cart=[]
 
 class Product {
@@ -19,7 +20,27 @@ class Product {
     }
 }
 
-class View {}
+class View {
+    displayProducts(products){
+       let result=``
+       products.forEach(item => {
+        result+=`
+            <article class="product">
+            <div class="img-container">
+                <img
+                    src=${item.image}
+                    alt=${item.title}
+                    class="product-img"
+                />
+                <button class="bag-btn" data-id=${item.id}>افزودن به سبد خرید</button>
+            </div>
+            <h3>${item.title}</h3>
+            <h4>${item.price}﷼</h4>
+            </article>`
+       });
+       productDOM.innerHTML=result
+    }
+}
 
 class Storage {}
 
@@ -27,5 +48,5 @@ class Storage {}
 document.addEventListener('DOMContentLoaded',() => {
     const view=new View()
     const product= new Product()
-    product.getProduct().then((data)=>console.log(data))
+    product.getProduct().then((data)=>view.displayProducts(data))
 })
