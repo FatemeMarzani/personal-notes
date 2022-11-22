@@ -45,7 +45,9 @@ class View {
         buttons.forEach((item)=>{
             let id=item.dataset.id
             item.addEventListener('click',(event)=>{
-               console.log(event)
+                let cartItem={...Storage.getProduct(id), amount: 1}
+                cart=[...cart,cartItem]
+                console.log(cart)
             })
 
         })
@@ -55,6 +57,10 @@ class View {
 class Storage {
     static saveProducts(products){
         localStorage.setItem('products',JSON.stringify(products))
+    }
+    static getProduct(id){
+        let products=JSON.parse(localStorage.getItem('products'))
+        return products.find(item=>item.id===id)
     }
 }
 
