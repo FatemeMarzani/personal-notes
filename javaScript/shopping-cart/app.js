@@ -1,7 +1,9 @@
 const productDOM=document.querySelector('.products-center')
 const cartItems=document.querySelector('.cart-items')
 const cartTotal=document.querySelector('.cart-total')
-
+const cartContent = document.querySelector('.cart-content')
+const cartDOM = document.querySelector('.cart')
+const cartOverlay = document.querySelector('.cart-overlay')
 let cart=[]
 
 class Product {
@@ -51,7 +53,12 @@ class View {
                 let cartItem={...Storage.getProduct(id), amount: 1}
                 cart=[...cart,cartItem]
                 Storage.saveCart(cart)
+
                 this.setCartValues(cart)
+
+                this.addCartItem(cartItem)
+
+                this.showCart()
             })
 
         })
@@ -68,6 +75,30 @@ class View {
         console.log(totalPrice)
         console.log(totalItem)
     }
+    addCartItem(item) {
+        const div = document.createElement('div')
+        div.classList.add('cart-item')
+    
+        div.innerHTML = `
+        <img src=${item.image} alt=${item.title} />
+        <div>
+          <h4>${item.title}</h4>
+          <h5>${item.price}</h5>
+          <span class="remove-item" data-id=${item.id}>حذف</span>
+        </div>
+        <div>
+          <i class="fas fa-chevron-up" data-id=${item.id}></i>
+          <p class="item-amount">${item.amount}</p>
+          <i class="fas fa-chevron-down" data-id=${item.id}></i>
+        </div>
+        `
+        cartContent.appendChild(div)
+      }
+
+      showCart() {
+        cartOverlay.classList.add('transparentBcg')
+        cartDOM.classList.add('showCart')
+      }
 }
 
 class Storage {
