@@ -42,11 +42,20 @@ class View {
     }
 }
 
-class Storage {}
+class Storage {
+    static saveProducts(products){
+        localStorage.setItem('products',JSON.stringify(products))
+    }
+}
 
 
 document.addEventListener('DOMContentLoaded',() => {
     const view=new View()
     const product= new Product()
-    product.getProduct().then((data)=>view.displayProducts(data))
+    product.getProduct().then((data)=>{
+        view.displayProducts(data)
+        Storage.saveProducts(data)
+
+    })
+    
 })
