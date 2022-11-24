@@ -4,6 +4,8 @@ const cartTotal=document.querySelector('.cart-total')
 const cartContent = document.querySelector('.cart-content')
 const cartDOM = document.querySelector('.cart')
 const cartOverlay = document.querySelector('.cart-overlay')
+const cartBtn=document.querySelector('.cart-btn')
+const closeCartBtn=document.querySelector('.close-cart')
 let cart=[]
 
 class Product {
@@ -99,10 +101,19 @@ class View {
         cartOverlay.classList.add('transparentBcg')
         cartDOM.classList.add('showCart')
     }
+
+    hideCart() {
+        cartOverlay.classList.remove('transparentBcg')
+        cartDOM.classList.remove('showCart')
+    }
+
     initApp(){
         cart=Storage.getCart()
         this.setCartValues(cart)
         this.populate(cart)
+
+        cartBtn.addEventListener('click',this.showCart)
+        closeCartBtn.addEventListener('click',this.hideCart)
     }
 
     populate(cart){
