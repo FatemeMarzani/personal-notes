@@ -6,6 +6,8 @@ const cartDOM = document.querySelector('.cart')
 const cartOverlay = document.querySelector('.cart-overlay')
 const cartBtn=document.querySelector('.cart-btn')
 const closeCartBtn=document.querySelector('.close-cart')
+const clearCartBtn=document.querySelector('.clear-cart')
+
 let cart=[]
 
 class Product {
@@ -121,6 +123,32 @@ class View {
             return this.addCartItem(item)
         })
     }
+    cartProcess(){
+        clearCartBtn.addEventListener('click',()=>{
+            return this.clearCart()
+        })
+    }
+    clearCart(){
+        let cartItems=cart.map((item)=>{
+            return item.id
+        })
+        cartItems.forEach((item)=>{
+            this.removeProduct(item)
+        })
+
+        while(cartContent.children.length>0){
+            cartContent.removeChild(cartContent.children[0])
+        }
+    }
+
+    removeProduct(productId){
+        cart=cart.filter((item)=>{
+            return item.id !== productId
+        })
+        this.setCartValues(cart)
+        Storage.saveCart(cart)
+
+    }
 }
 
 class Storage {
@@ -152,6 +180,7 @@ document.addEventListener('DOMContentLoaded',() => {
     })
     .then(()=>{
         view.getCartButtons()
+        view.cartProcess()
     })
     
 })
