@@ -93,12 +93,23 @@ class View {
         </div>
         `
         cartContent.appendChild(div)
-      }
+    }
 
-      showCart() {
+    showCart() {
         cartOverlay.classList.add('transparentBcg')
         cartDOM.classList.add('showCart')
-      }
+    }
+    initApp(){
+        cart=Storage.getCart()
+        this.setCartValues(cart)
+        this.populate(cart)
+    }
+
+    populate(cart){
+        cart.forEach((item)=>{
+            return this.addCartItem(item)
+        })
+    }
 }
 
 class Storage {
@@ -112,12 +123,17 @@ class Storage {
     static saveCart(cart){
         localStorage.setItem('cart',JSON.stringify(cart))
     }
+    static getCart(){
+        return localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []
+    }
 }
 
 
 document.addEventListener('DOMContentLoaded',() => {
     const view=new View()
     const product= new Product()
+
+    view.initApp()
     product.getProducts().then((data)=>{
         view.displayProducts(data)
         Storage.saveProducts(data)
