@@ -127,6 +127,16 @@ class View {
         clearCartBtn.addEventListener('click',()=>{
             return this.clearCart()
         })
+
+        cartContent.addEventListener('click',(event)=>{
+            if(event.target.classList.contains('remove-item')){
+                let removeItem=event.target
+                let id=removeItem.dataset.id
+                
+                cartContent.removeChild(removeItem.parentElement.parentElement)
+                this.removeProduct(id)
+            }
+        })
     }
     clearCart(){
         let cartItems=cart.map((item)=>{
@@ -148,7 +158,7 @@ class View {
         this.setCartValues(cart)
         Storage.saveCart(cart)
 
-    }
+    } 
 }
 
 class Storage {
