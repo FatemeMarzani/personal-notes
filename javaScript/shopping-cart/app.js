@@ -136,6 +136,22 @@ class View {
                 cartContent.removeChild(removeItem.parentElement.parentElement)
                 this.removeProduct(id)
             }
+            if(event.target.classList.contains('fa-chevron-up')){
+                let addAmount=event.target
+                let id=addAmount.dataset.id
+                
+                let product=cart.find((item)=>{
+                    return item.id===id
+                })
+
+                product.amount=product.amount+1
+
+                this.setCartValues(cart)
+                Storage.saveCart(cart)
+
+                addAmount.nextElementSibling.innerText=product.amount
+
+            }
         })
     }
     clearCart(){
