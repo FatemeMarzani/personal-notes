@@ -1,12 +1,16 @@
+import homePage from "./pages/homePage.js"
+import lastPosts from "./pages/lastPosts.js"
+import lastVideos from "./pages/lastVideos.js"
+
 const navTo=(url)=>{
     history.pushState(null,null,url)
     router()
 }
 const router=()=>{
     const routes=[
-        {path:'/',view:()=>{console.log("/")}},
-        {path:'/last-videos',view:()=>{console.log("/last-videos")}},
-        {path:'/last-posts',view:()=>{console.log("/last-posts")}}
+        {path:'/',view:homePage},
+        {path:'/last-videos',view:lastVideos},
+        {path:'/last-posts',view:lastPosts}
     ]
 
     const matchRoutes=routes.map((item)=>{
@@ -22,10 +26,7 @@ const router=()=>{
     if(!match){
         match={route:routes[0], isMatch:true} 
     }
-
-
-
-    console.log(match.route.view())
+    document.querySelector('#app').innerHTML=match.route.view()
 }
 window.addEventListener('popstate',router)
 
