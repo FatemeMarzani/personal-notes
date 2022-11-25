@@ -1,3 +1,7 @@
+const navTo=(url)=>{
+    history.pushState(null,null,url)
+    router()
+}
 const router=()=>{
     const routes=[
         {path:'/',view:()=>{console.log("/")}},
@@ -23,8 +27,14 @@ const router=()=>{
 
     console.log(match.route.view())
 }
-
+window.addEventListener('popstate',router)
 
 document.addEventListener('DOMContentLoaded',()=>{
+    document.body.addEventListener('click',(event)=>{
+        if(event.target.matches('[data-link]')){
+            event.preventDefault()
+            navTo(event.target.href)
+        }
+    })
     router()
 })
