@@ -1,0 +1,53 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: 'Vazir-FD';
+  src: url('font/Vazir-Regular-FD.woff');
+}
+
+body {
+  font-family: 'Vazir-FD';
+  direction: rtl;
+}
+
+.container {
+  margin: 3rem auto;
+  width: 700px;
+  padding: 3rem 2rem;
+  border-radius: 5px;
+  box-shadow: 0 0 25px 5px rgb(0, 0, 0, 0.07);
+}
+
+.nav-links {
+  text-align: center;
+}
+
+.nav-links ul {
+  list-style: none;
+}
+
+.nav-links li {
+  display: inline-block;
+}
+
+.nav-links a {
+  text-decoration: none;
+  background: #eeeeee;
+  color: #616161;
+  border-radius: 100px;
+  padding: 0.3rem 2rem;
+  margin: 0 0.6rem;
+}
+
+#app {
+  padding: 3.5rem 3rem;
+  line-height: 1.8rem;
+}
+
+#app p {
+  color: #212121;
+}
