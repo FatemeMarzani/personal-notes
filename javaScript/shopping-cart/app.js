@@ -139,7 +139,7 @@ class View {
             if(event.target.classList.contains('fa-chevron-up')){
                 let addAmount=event.target
                 let id=addAmount.dataset.id
-                
+                    
                 let product=cart.find((item)=>{
                     return item.id===id
                 })
@@ -152,6 +152,29 @@ class View {
                 addAmount.nextElementSibling.innerText=product.amount
 
             }
+            if(event.target.classList.contains('fa-chevron-down')){
+                let lowerAmount=event.target
+                let id=lowerAmount.dataset.id
+                    
+                let product=cart.find((item)=>{
+                    return item.id=== id
+                })
+
+                product.amount=product.amount- 1
+
+                if(product.amount > 0){
+                    this.setCartValues(cart)
+                    Storage.saveCart(cart)
+                    lowerAmount.previousElementSibling.innerText=product.amount
+                }else{
+                    cartContent.removeChild(lowerAmount.parentElement.parentElement)
+                    this.removeProduct(id)
+                }
+
+
+            }
+            
+            
         })
     }
     clearCart(){
