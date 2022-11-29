@@ -16,5 +16,21 @@ const createNoteElement=(id,content)=>{
 
     noteElement.value=content
 
+    noteElement.addEventListener('change',()=>{
+        updateNote(id,noteElement.value)
+    })
+
+    noteElement.addEventListener('dbclick',()=>{
+        deleteNote(id,noteElement)
+    })
+
     return noteElement
+}
+
+const updateNote=(id,newContent)=>{
+
+}
+
+const deleteNote=(id,element)=>{
+
 }
