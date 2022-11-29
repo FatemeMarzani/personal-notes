@@ -8,3 +8,13 @@ const getNotes=()=>{
 const saveNotes=(notes)=>{
     localStorage.setItem('notes',JSON.stringify(notes))
 }
+
+const createNoteElement=(id,content)=>{
+    const noteElement=document.createElement('textarea')
+
+    noteElement.classList.add('note')
+
+    noteElement.value=content
+
+    return noteElement
+}
