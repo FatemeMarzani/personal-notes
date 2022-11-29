@@ -1,3 +1,10 @@
 const noteContainer = document.querySelector('#app')
 const addNoteBtn = document.querySelector('.add-note')
-console.log('js is loaded.')
+
+const getNotes=()=>{
+    return JSON.parse(localStorage.getItem('notes') || '[]')
+}
+
+const saveNotes=(notes)=>{
+    localStorage.setItem('notes',JSON.stringify(notes))
+}
