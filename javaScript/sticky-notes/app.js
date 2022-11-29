@@ -50,7 +50,9 @@ const updateNote=(id,newContent)=>{
 }
 
 const deleteNote=(id,element)=>{
-
+    const notes=getNotes().filter((item)=>item.id!=id)[0]
+    saveNotes(notes)
+    noteContainer.removeChild(element)
 }
 
 getNotes().forEach((item) => {
