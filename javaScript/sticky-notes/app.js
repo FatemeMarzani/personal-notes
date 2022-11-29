@@ -31,10 +31,10 @@ const createNoteElement=(id,content)=>{
 const addNote=()=>{
     const notes=getNotes()
     const noteItem={
-        id: Math.floor(math.random*100000),
-        content:''
+        id: Math.floor(Math.random*100000),
+        content:``
     }
-    createNoteElement(noteItem.id,noteItem.content)
+    const noteElement=createNoteElement(noteItem.id,noteItem.content)
     noteContainer.insertBefore(noteElement,addNoteBtn)
 
     saveNotes([...notes,noteItem])
