@@ -42,6 +42,10 @@ const addNote=()=>{
 }
 
 const updateNote=(id,newContent)=>{
+    const notes=getNotes()
+    const updatedNote=notes.filter((item)=>item.id===id)[0]
+    updatedNote.content=newContent
+    saveNotes(notes)
 
 }
 
@@ -53,3 +57,7 @@ getNotes().forEach((item) => {
     const noteElement=createNoteElement(item.id,item.content) 
     noteContainer.insertBefore(noteElement,addNoteBtn)
 });
+
+addNoteBtn.addEventListener('click',()=>{
+    addNote()
+})
