@@ -22,7 +22,7 @@ const createNoteElement=(id,content)=>{
         updateNote(id,noteElement.value)
     })
 
-    noteElement.addEventListener('dbclick',()=>{
+    noteElement.addEventListener('dblclick',()=>{
         deleteNote(id,noteElement)
     })
 
